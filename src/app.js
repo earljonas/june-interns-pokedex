@@ -54,6 +54,16 @@ app.locals.typeColors = {
 app.use('/', routes);
 
 // ============================================
+// 404 HANDLER
+// ============================================
+app.use((req, res, next) => {
+  res.status(404).render('error', {
+    message: 'Page not found',
+    error: `Cannot GET ${req.originalUrl}`
+  });
+});
+
+// ============================================
 // START SERVER
 // ============================================
 if (nodeEnv !== 'test') {
